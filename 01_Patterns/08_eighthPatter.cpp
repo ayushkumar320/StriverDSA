@@ -14,7 +14,7 @@ using namespace std;
 void printPattern(int n){
   for(int i = 0; i < n; i++){
     // Space
-    for(int j = n; j > n - i; j--){
+    for(int j = 0; j < i; j++){
       cout << " ";
     }
     // Star
@@ -22,7 +22,7 @@ void printPattern(int n){
       cout << '*';
     }
     // Space
-    for(int j = n; j > n - i; j--){
+    for(int j = 0; j < i; j++){
       cout << " ";
     }
     cout << endl;
