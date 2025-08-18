@@ -29,3 +29,8 @@ int main(){
   f();
   return 0;
 }
+
+// Recursion Tree - 
+/* 
+A recursion tree is a tree representation of the function calls made during the execution of a recursive function. Each node in the tree represents a function call, and the edges represent the calls made to other functions.
+*/
