@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/StriverDSA/00_basics",
-      "program": "d:/StriverDSA/00_basics/build/Debug/outDebug",
+      "cwd": "d:/StriverDSA/04_Recursion",
+      "program": "d:/StriverDSA/04_Recursion/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
