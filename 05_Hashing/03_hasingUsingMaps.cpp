@@ -37,5 +37,9 @@ int main() {
     cout << "Element " << number << " has frequency " << mpp[number] << endl;
   }
   
+  // Map stores everything in order
+  for(auto it : mpp) {
+    cout << "Element " << it.first << " has frequency " << it.second << endl;
+  }
   return 0;
 }
