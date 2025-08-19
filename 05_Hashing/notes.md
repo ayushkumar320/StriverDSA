@@ -83,6 +83,7 @@
 # Tools for hashing (STL)
 - With the use of STLs and Collection in C++, we can implement hashing more easily and efficiently.
 - Time space complexity of maps in all the best, worst and average case scenario is O(log(N)) where N is the number of element
+- Unordered map's average and best time complexity is O(1), while the worst case is O(n).
 
 - `unordered_map`: A hash table implementation in C++ that allows for fast key-value pair storage and retrieval.
 - `unordered_set`: A hash table implementation for storing unique elements with fast access.
