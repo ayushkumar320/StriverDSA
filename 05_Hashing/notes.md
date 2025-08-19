@@ -79,3 +79,47 @@
   }
   ```
 - The time complexity of hashing is `O(n)` for building the hash table and `O(1)` for each query.
+
+# Tools for hashing (STL)
+- With the use of STLs and Collection in C++, we can implement hashing more easily and efficiently.
+
+- `unordered_map`: A hash table implementation in C++ that allows for fast key-value pair storage and retrieval.
+- `unordered_set`: A hash table implementation for storing unique elements with fast access.
+- `vector`: While not a hash table, it can be used in conjunction with hashing techniques for efficient data storage and retrieval.
+
+# Collection used in hashing
+- `hash_map`: A hash table implementation for storing key-value pairs.
+- `hash_set`: A hash table implementation for storing unique elements.
+
+## Map and unordered map
+- Map is a data structure in C++ that stores key-value pairs in a sorted order.
+- Unordered map is a data structure in C++ that stores key-value pairs in an unsorted order, allowing for faster access times on average.
+
+### Example and usecase of map
+  - Suppose we have a given array `a[]` with elements `{1, 2, 2, 3, 3, 3}`.
+  - We can use a map to count the frequency of each element in the array.
+  - The key will be the element itself, and the value will be its frequency.
+
+  ```cpp
+  // mpp[arr[i]]++
+  // If numbers are bigger, we can use map<long, long>
+  #include <iostream>
+  #include <map>
+  using namespace std;
+
+  int main() {
+      int a[] = {1, 2, 2, 3, 3, 3};
+      map<int, int> freqMap;
+
+      for (int i = 0; i < 6; i++) {
+          freqMap[a[i]]++;
+      }
+
+      // Display the frequency of each element
+      for (auto it = freqMap.begin(); it != freqMap.end(); it++) {
+          cout << "Element: " << it->first << ", Frequency: " << it->second << endl;
+      }
+
+      return 0;
+  }
+  ```
