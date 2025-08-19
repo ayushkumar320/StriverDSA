@@ -125,3 +125,8 @@
       return 0;
   }
   ```
+
+## Key notes
+- The time complexity of hashing is O(n) for building the hash table and O(1) for each query.
+- The space complexity of maps in all the best, worst and average case scenario is O(log(N)) where N is the number of element.
+- The preference should always be given to unordered maps, and if and only if TLE (Time limit exceeded) occurs, should we consider using ordered maps.
