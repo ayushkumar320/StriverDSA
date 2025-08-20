@@ -43,3 +43,20 @@
     }
   }
   ```
+
+# Insertion Sort
+- It is a comparison-based sorting algorithm that builds a sorted array (or list) one element at a time.
+- It works by dividing the array into a sorted and an unsorted region. Initially, the sorted region is empty, and the unsorted region contains all the elements.
+- The algorithm repeatedly takes the first element from the unsorted region and inserts it into the correct position in the sorted region.
+- The time complexity of Insertion Sort is O(n^2) in the worst and average cases, but it can be O(n) in the best case when the array is already sorted.
+- Code snippet for loops where `n` is the size of the array:
+  ```cpp
+  for(i = 0; i <= n-1; i++){
+    j = i;
+    while(j > 0 && arr[j-1] > arr[j]){
+      swap(arr[j-1], arr[j]);
+      j--;
+    }
+    arr[j] = arr[j-1];
+  }
+  ```
