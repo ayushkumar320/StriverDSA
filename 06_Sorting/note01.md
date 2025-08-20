@@ -29,3 +29,17 @@
   - The time complexity of this implementation of Selection Sort is O(n^2) in all cases (best, average, and worst) because it always goes through the entire unsorted part to find the minimum element.
 
 # Bubble Sort
+- It is a type of sorting in which we compare two consecutive terms and swap them if they are in the wrong order.
+- We notice after 1st round of sorting, the maximum element is moved to the last position.
+- To sort the whole array, we need to repeat the process for all elements until no swaps are needed.
+- The time complexity of Bubble Sort is O(n^2) in the worst and average cases, but it can be O(n) in the best case when the array is already sorted.
+- Code snippet for loops where `n` is the size of the array:
+  ```cpp
+  for(i = n-1; i >= 0; i--){
+    for (j = 0; j <= i-1; j++) {
+      if (arr[j] > arr[j+1]) {
+        swap(arr[j], arr[j+1]);
+      }
+    }
+  }
+  ```
