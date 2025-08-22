@@ -153,3 +153,76 @@
   - n gets divided by 2 in each step until we reach individual elements, resulting in log n (base2) divisions.
   - And we are performing merge operations for each level of division, which takes linear time O(n).
   - And it happens together division and merging at each level therefore the overall time complexity is O(n log n).
+
+# Quick Sort
+- Quick Sort is a divide-and-conquer algorithm that sorts an array by partitioning it into smaller sub-arrays.
+- The basic idea is to select a 'pivot' element from the array and partition the other elements into two sub-arrays according to whether they are less than or greater than the pivot. Pivot element can be any element from the array.
+- Now we pick up the pivot, and place it at its correct place. 
+- Now we choose the next element and will place them at their respective correct place.
+- Smaller on the left, larger on the right.
+- After placing the pivot on correct place, iterate the remaining elements and larger elements are placed in right of the pivot element and smaller elements are placed in left of the pivot element.
+- After 1st step, the pivot is in its final position, and the array is partitioned into two sub-arrays.
+- The process is then repeated recursively for the sub-arrays.
+
+### Algorithm
+- We will use concept of low and high and pointers to compare the elements.
+
+- Suppose we have an array `a[]` 
+  ```[4, 6, 2, 5, 7, 9, 1, 3]```
+  - The low variable points to the 0th index i.e `a[0]`.
+  - The high variable points to the last index i.e. `a[7]`.
+  - Let pivot variable point to `a[low]`.
+- Next step is placing the pivot element on right place.
+  - This can be done by finding the first element which is greater than pivot i.e. `a[low]`.
+  - Here 6 (the second element) is greater than 4 (the pivot), so we will assign a new pointer i (starting from left) which points to the element 6.
+  - Now we will use another pointer j (starting from right/last) to find the first element which is smaller than pivot i.e. `a[low]`.
+  - Here the last element 3 is smaller than 4 (the pivot), so we will assign a new pointer j which points to the element 3.
+  - Now we will swap the elements at i and j.
+  - New array : ```[4, 3, 2, 5, 7, 9, 1, 6]```
+- Again we will figure out the first element from left which is greater than pivot, here 5 (the fourth element).
+  - So we will move the pointer i to point to 5.
+  - Now we will figure out the first element from right which is smaller than pivot, here 1 (the seventh element).
+  - So we will swap the elements at i and j.
+  - Now new array formed is: ```[4, 3, 2, 1, 7, 9, 5, 6]```
+- The above process is repeated until the left part becomes the territory where every element is smaller than pivot
+- New array: ```[1, 3, 2, 4, 7, 8, 5, 6]```
+- Now this element 4 is termed as partition index and 2 new sub-arrays are formed from (low to partition - 1) and other (partition + 1 to high)
+- We perform quick sort on both sub-arrays.
+
+### Pseudo Code
+```cpp
+  
+  int partition(int &arr[], int low, int high) {
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
+    while (i < j) {
+      // Finding first element greater than pivot
+      // For cases where multiple elements are equal to pivot, here we have decided to place it on the left part se arr[i] <= pivot is considered, in case if we wanted to place it on the right we could have included equality with the >= part i.e with the next while loop
+      while (arr[i] <= pivot && i <= high - 1) {
+        i++;
+      }
+      // Finding first element smaller than pivot
+      while (arr[j] > pivot && j >= low + 1) {
+        j--;
+      }
+      // As j crosses i, we are already in the correct halves
+      if (i < j) {
+        swap(arr[i], arr[j]);
+      }
+    }
+    // Swapping the pivot to the correct place
+    swap(arr[low], arr[j]);
+    // Return the partition (here pivot got swapped with arr[j] which means j is the correct position)
+    return j;
+  }
+  
+  
+  void quickSort(int &arr[], int low, int high) {
+    if (low < high) {
+      int partitionIndex =  partition(arr, low, high);
+      quickSort(arr, low, partitionIndex - 1);  // Recursion for left half
+      quickSort(arr, partitionIndex + 1, high);  // Recursion for right half
+    }
+  }
+```
