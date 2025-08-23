@@ -20,9 +20,21 @@ vector<int> bruteForceRotate(vector<int> arr, int d) {
 
 void leftRotate(vector<int>& arr, int d) {
   int n = arr.size();
+  d = d % n;  // To wrap around the rotations if needed
   reverse(arr.begin(), arr.begin() + d);
   reverse(arr.begin() + d, arr.end());
   reverse(arr.begin(), arr.end());
+}
+
+void rightRotate(vector<int> &arr, int d) {
+  int n = arr.size();
+  d = d % n;  // To wrap around the rotations if needed
+  // First we will reverse the whole array
+  reverse(arr.begin(), arr.end());
+  // After that we will reverse the first d elements
+  reverse(arr.begin(), arr.begin() + d);
+  // Finally, we will reverse the remaining elements
+  reverse(arr.begin() + d, arr.end());
 }
 
 int main() {
