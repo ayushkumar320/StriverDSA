@@ -225,4 +225,25 @@ Given an array [1, 2, 4, 7, 7, 5] we need to find the 2nd largest element.
   - Space complexity is O(n).
 
 2. **Optimal Solution:**
-  
+  - We can reverse the first d element of the array.
+  - We can reverse the remaining elements of the array.
+  - And finally, we can reverse the entire array to get the desired output.
+  ```cpp
+  // Where a is the array and n is the length
+    reverse(a, a+d);
+    reverse(a+d, a+n);
+    reverse(a, a+n);
+  ```
+
+  - To rotate the array right:
+  - We can use the same approach as left rotation, but with a slight modification.
+  - We will first reverse the entire array.
+  - Then we will reverse the first k elements.
+  - Finally, we will reverse the remaining elements.
+  ```cpp
+  // Where a is the array and n is the length
+    reverse(a, a+n);
+    reverse(a, a+k);
+    reverse(a+k, a+n);
+  ```
+  - Overall time complexity is O(n) and space complexity is O(1).
