@@ -247,3 +247,54 @@ Given an array [1, 2, 4, 7, 7, 5] we need to find the 2nd largest element.
     reverse(a+k, a+n);
   ```
   - Overall time complexity is O(n) and space complexity is O(1).
+
+## Moving Zeros to the end:
+- Let an array `arr[] = {1, 0, 2, 3, 2, 0, 0, 4, 5, 1}` 
+- We need to move all the zeros to the end of the array while maintaining the order of non-zero elements.
+1. **Brute Force:**
+  - We can take a new array and copy all non-zero elements to it.
+  - Then we can fill the remaining positions with zeros.
+  ```cpp
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int new_arr[n];
+    int index = 0;
+    for (int i = 0; i < n; i++) {
+      if (arr[i] != 0) {
+        new_arr[index] = arr[i];
+        index++;
+      }
+    }
+    // Putting all the non zero elements in actual array
+    for (int i = 0; i < n; i++) {
+      arr[i] = new_arr[i];
+    }
+    // Putting all the zeros at the end
+    for (int i = index; i < n; i++) {
+      arr[i] = 0;
+    }
+  ```
+  - Time complexity is O(n).
+  - Space complexity is O(n).
+2. **Optimal Solution:**
+  - We can use two pointer system where while iterating, we can swap the place of zero with the next non zero element.
+  - Here i will iterate through the array and j will keep track of the position to place the next non-zero element.
+  ```cpp
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int j = -1;
+    // Finding the first 0th element
+    for(int i = 0; i < n; i++) {
+      if(arr[i] == 0) {
+        j = i;
+        break;
+      }
+    }
+    if(j==-1) return;
+    for(int i = j + 1; i < n; i++) {
+      if(arr[i] != 0) {
+        swap(arr[i], arr[j]);
+        j++;
+      }
+    }
+  ```
+  - Time Complexity is O(n).
+  - Space Complexity is O(1). As we are not using any extra space to store temporary array.
