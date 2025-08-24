@@ -298,3 +298,77 @@ Given an array [1, 2, 4, 7, 7, 5] we need to find the 2nd largest element.
   ```
   - Time Complexity is O(n).
   - Space Complexity is O(1). As we are not using any extra space to store temporary array.
+
+## Union of two sorted arrays:
+- Union means combining the elements of two arrays into a single array, without duplicates.
+- Let first array be `arr1[] = {1, 1, 2, 3, 4, 5}`
+- Let second array be `arr2[] = {2, 3, 4, 5, 6}`
+- The union of these two arrays will be `arr[] = {1, 2, 3, 4, 5, 6}`
+
+1. **Brute Force Approach:**
+  - We can take a new array and copy all elements from both arrays to it.
+  - Then we can remove duplicates from the new array.
+  - When we hear unique, something like map or set comes in picture as they store only unique elements.
+  ```cpp
+    // Lets take a set data structure
+    set<int> s;
+    // Now we will iterate through both arrays and insert elements into the set
+    for (int i = 0; i < arr1.size(); i++) {
+      s.insert(arr1[i]);    // -- O(n1 log n1) where n1 is size of array
+    }
+    for (int i = 0; i < arr2.size(); i++) {
+      s.insert(arr2[i]);    // -- O(n2 log n2)
+    }
+    // Now we can copy the elements from the set to the result array
+    vector<int> unionArr(s.begin(), s.end());
+  ```
+  - The Time Complexity of this set approach if every element is unique O(n1 log n1 + n2 log n2)
+  - The Space Complexity is O(n1 + n2) due to the set storing unique elements.
+
+2. **Optimal Approach:**
+  - Only if both the arrays are sorted, we can use a two pointer approach
+  - We will assign an i pointer to first array and j pointer to 2nd array and will iterate through both arrays
+  - We will add the elements by comparing the elements at the i and j pointers
+  - If the elements are equal, we will add it to the result array and move both pointers
+  - If the element in the first array is smaller, we will move the i pointer
+  - If the element in the second array is smaller, we will move the j pointer
+  - This way we can find the union in O(n1 + n2) time
+  ```cpp
+    vector<int> sortedArray(vector<int> a, vector<int> b) {
+      int n1 = a.size();
+      int n2 = b.size();
+      int i = 0;
+      int j = 0;
+      vector<int> unionArr;
+      while(i < n1 && j < n2) {
+        if (a[i] <= b[j]) {
+          if(uniorArr.size() == 0 || unionArr.back() != a[i]) {
+            unionArr.push_back(a[i]);
+          }
+          i++;
+        }
+        else {
+          if(uniorArr.size() == 0 || unionArr.back() != b[j]) {
+            unionArr.push_back(b[j]);
+          }
+          j++;
+        }
+      }
+      // If the arrays got exhausted
+      while(j < n2) {
+        if(uniorArr.size() == 0 || unionArr.back() != b[j]) {
+          unionArr.push_back(b[j]);
+        }
+        j++;
+      }
+      while(i < n1) {
+        if(uniorArr.size() == 0 || unionArr.back() != a[i]) {
+          unionArr.push_back(a[i]);
+        }
+        i++;
+      }
+      return unionArr;
+    }
+  ```
+  - Time complexity is O(n1 + n2).
+  - Space complexity is O(n1 + n2) due to the result array storing unique elements.
