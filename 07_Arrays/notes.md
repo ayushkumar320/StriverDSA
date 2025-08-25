@@ -372,3 +372,60 @@ Given an array [1, 2, 4, 7, 7, 5] we need to find the 2nd largest element.
   ```
   - Time complexity is O(n1 + n2).
   - Space complexity is O(n1 + n2) due to the result array storing unique elements.
+
+## Intersection of two sorted array:
+- Intersection means finding common elements between two arrays.
+1. **Brute Force:**
+  - We can use two nested loops to compare each element of the first array with each element of the second array.
+  - If we find a match, we add it to the result array.
+  ```cpp
+    vector<int> intersection(vector<int> a, vector<int> b) {
+      vector<int> intersectArr;
+      for (int i = 0; i < a.size(); i++) {
+        for (int j = 0; j < b.size(); j++) {
+          if (a[i] == b[j]) {
+            // To skip duplicates
+            if (intersectArr.empty() || intersectArr.back() != a[i]) {
+              intersectArr.push_back(a[i]);
+            }
+          }
+        }
+      }
+      return intersectArr;
+    }
+  ```
+  - Time complexity is O(n1 * n2).
+  - Space complexity is O(n1 + n2) due to the result array storing common elements.
+2. **Optimal Approach:**
+  - If both arrays are sorted, we can use a two-pointer approach.
+  - We will assign an i pointer to the first array and a j pointer to the second array and will iterate through both arrays.
+  - If we find a match, we will add it to the result array and move both pointers.
+  - If the element in the first array is smaller, we will move the i pointer.
+  - If the element in the second array is smaller, we will move the j pointer.
+  - This way we can find the intersection in O(n1 + n2) time.
+  ```cpp
+    vector<int> intersection(vector<int> a, vector<int> b) {
+      vector<int> intersectArr;
+      int i = 0;
+      int j = 0;
+      while (i < a.size() && j < b.size()) {
+        if (a[i] == b[j]) {
+          // To skip duplicates
+          if (intersectArr.empty() || intersectArr.back() != a[i]) {
+            intersectArr.push_back(a[i]);
+          }
+          i++;
+          j++;
+        }
+        else if (a[i] < b[j]) {
+          i++;
+        }
+        else {
+          j++;
+        }
+      }
+      return intersectArr;
+    }
+  ```
+  - Time complexity is O(n1 + n2).
+  - Space complexity is O(n1 + n2) due to the result array storing common elements.
