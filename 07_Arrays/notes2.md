@@ -94,3 +94,78 @@
   return maxCount;
 ```
   - The time complexity is simply O(n) and space complexity is O(1).
+
+# Find the number that appears once, and other numbers twice.
+1. **Brute Force Approach:**
+- We will pick one element and check if it appears twice or not.
+- We can check by iterating over the array for each element.
+```cpp
+  for(int i = 0; i < nums.size(); i++) {
+    int count = 0;
+    for(int j = 0; j < nums.size(); j++) {
+      if (nums[i] == nums[j]) {
+        count++;
+      }
+    }
+    if (count == 1) {
+      return nums[i];
+    }
+  }
+  return -1; // If no such element found
+```
+  - Time complexity is O(n^2) and space complexity is O(1).
+
+2. **Better Solution:**
+- We can use hashing to count the occurrance of each element
+- First we need to figure out the max element
+```cpp
+  int maxElement = -1;
+  for(int i = 0 ; i < nums.size(); i++) {     // ---- TC -> O(n)
+    maxElement = max(maxElement, nums[i]);
+  }
+```
+- Now use the concept of hashing
+  
+```cpp 
+  int hash[maxElement] = {0};
+  for(int i = 0; i < nums.size(); i++) {
+    hash[nums[i]]++;
+  }
+  for(int i = 0; i < maxElement; i++) {
+    if (hash[i] == 1) {
+      return i;
+    }
+  }
+  return -1; // If no such element found whose occurance is 1
+```
+  - Time complexity is O(n) and space complexity is O(n).
+  
+- But hash array can not be used everytime, if the range of numbers is too large or unknown.
+- We can use map data structure with a bigger key
+```cpp
+  map<long long, int> mpp;    // TC - O(n log m) where m is size of map, here n/2 + 1
+  for(int i = 0; i < nums.size(); i++) {
+    mpp[nums[i]]++;
+  }
+  for(auto it : mpp) {   // TC - O(n/2 + 1)
+    if (it.second == 1) {
+      return it.first;
+    }
+  }
+  return -1; // If no such element found whose occurance is 1
+```
+  - Time complexity is O(n log M + n/2 + 1) for ordered map where M is size of map
+  - We can use unordered map to achieve O(n) time complexity but for worst case for unordered map the time complexity is O(n^2), in that case we can always roll back to ordered map.
+  - Space complexity is (n/2 + 1)
+
+3. **Optimal Solution:**
+- We can use XOR to find the element that appears once.
+- We will XOR all the elements in an array, as same number will cancel out (a ^ a = 0)
+```cpp
+  int xor = 0;
+  for(int i = 0; i < nums.size(); i++) {
+    xor = xor ^ nums[i];
+  }
+  return xor;
+```
+  - Time complexity is O(n) and space complexity is O(1).
