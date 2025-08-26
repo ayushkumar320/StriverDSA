@@ -75,3 +75,22 @@
 ```
   - The time complexity of this approach is O(n) and space complexity is O(1).
   - But it is the most optimal solution among all the discussed methods as for a bigger range of numbers, the XOR method will perform better than the sum method due to the avoidance of potential overflow issues while calculating the sum.
+
+# Maximum Consecutive Ones:
+
+- Given a binary array, find the maximum number of consecutive 1s in this array.
+- It can be done by simple iteration through the array and counting the number of consecutive 1s.
+```cpp
+  int maxCount = 0;
+  int count = 0;
+  for (int i = 0; i < nums.size(); i++) {
+    if(nums[i] == 1) {
+      count++;
+      maxCount = max(maxCount, count);
+    } else {
+      count = 0;
+    }
+  }
+  return maxCount;
+```
+  - The time complexity is simply O(n) and space complexity is O(1).
